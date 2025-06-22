@@ -1,425 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>LinkHub - Your Link Collection</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tools App</title>
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"  rel="stylesheet"/>
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/> 
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-
-    <!-- Custom CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #4361ee; 
+            --primary-color: #4361ee;
             --secondary-color: #3f37c9;
-            --accent-color: #4895ef;
-            --dark-color: #2b2d42;
             --light-color: #f8f9fa;
-            --success-color: #4cc9f0;
-            --card-bg: #ffffff;
+            --dark-color: #212529;
         }
-
+        
         body {
-            background-color: #f5f7ff;
-            font-family: 'Poppins', sans-serif;
-            color: var(--dark-color);
-            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7fa;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 1rem;
         }
-
-        .header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 3rem 0 4rem;
-            margin-bottom: -2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::before {
-            content: '';
-            position: absolute;
-            bottom: -50px;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background-color: #f5f7ff;
-            transform: skewY(-3deg);
-            z-index: 1;
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .title {
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .subtitle {
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        main.container.d-flex.justify-content-center {
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .app-card {
+        
+        .app-container {
+            max-width: 500px;
+            margin: auto;
             background-color: white;
             border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-        }
-
-        .search-box {
-            margin: 2rem auto 3rem;
-            max-width: 600px;
-            position: relative;
-            z-index: 2;
-        }
-
-        #searchInput {
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
-            border: none;
-            box-shadow: 0 4px 20px rgba(67, 97, 238, 0.15);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        #searchInput:focus {
-            box-shadow: 0 4px 25px rgba(67, 97, 238, 0.25);
-            outline: none;
-        }
-
-        #searchInput::placeholder {
-            color: #adb5bd;
-        }
-
-        .links-container {
-            padding-bottom: 3rem;
-            flex: 1;
-        }
-
-        .link-card {
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            margin-bottom: 1.5rem;
-            border: none;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            background-color: var(--card-bg);
-            height: 100%;
-        }
-
-        .link-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.15);
-        }
-
-        .link-card .card-body {
-            padding: 1.75rem;
+            height: 90vh;
             display: flex;
             flex-direction: column;
-            height: 100%;
         }
-
-        .link-card .card-title {
+        
+        .app-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            margin-bottom: 15px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none !important;
             color: var(--dark-color);
-            font-weight: 600;
-            margin-bottom: 0.75rem;
+        }
+        
+        .tool-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            background-color: var(--light-color);
+        }
+        
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
         }
-
-        .link-card .card-title i {
-            margin-right: 0.75rem;
-            color: var(--accent-color);
-            font-size: 1.25rem;
-        }
-
-        .link-card .card-text {
-            color: #6c757d;
-            font-size: 0.9rem;
-            flex-grow: 1;
-        }
-
-        .category-badge {
-            background-color: rgba(67, 97, 238, 0.1);
-            color: var(--primary-color);
-            font-weight: 500;
-            font-size: 0.75rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 50px;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        .visit-btn {
-            background-color: var(--primary-color);
-            border: none;
-            border-radius: 50px;
-            padding: 0.5rem 1.5rem;
-            font-weight: 500;
-            margin-top: 1rem;
-            align-self: flex-start;
-            display: inline-flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        .visit-btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateX(5px);
-        }
-
-        .visit-btn i {
-            margin-left: 0.5rem;
-            font-size: 0.8rem;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 3rem;
-            color: #6c757d;
-        }
-
-        .no-results i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #dee2e6;
-        }
-
-        .footer {
-            background-color: var(--dark-color);
-            color: white;
-            padding: 2rem 0;
+        
+        .tool-name {
+            font-weight: 600;
+            font-size: 1.1rem;
             text-align: center;
         }
-
-        .footer p {
-            margin: 0;
-            font-size: 0.9rem;
-            opacity: 0.8;
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        @media (max-width: 576px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-container {
+                height: 100vh;
+                border-radius: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header text-center">
-        <div class="container header-content">
-            <h1 class="title display-4">LinkHub</h1>
-            <p class="subtitle lead">Your personal link collection</p>
+    <div class="app-container">
+        <div class="app-header">
+            Finance Tools
         </div>
-    </header>
-
-    <!-- Main Content -->
-    <main class="container d-flex justify-content-center">
-        <div class="app-card p-4 w-100" style="max-width: 500px;">
-            <!-- Search Box -->
-            <div class="search-box mb-4">
-                <input type="text" id="searchInput" class="form-control" placeholder="Search your links...">
+        <div class="app-content">
+            <div class="grid-container">
+                <!-- Rate Exchange -->
+                <div class="tool-item" id="rateExchange">
+                    <div class="tool-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="tool-name">Rate Exchange</div>
+                </div>
+                
+                <!-- Date Converter -->
+                <a href="date-converter.html" class="tool-item" id="dateConverter">
+                    <div class="tool-icon">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <div class="tool-name">Date Converter</div>
+                </a>
+                
+                <!-- Today's Motivation -->
+                <a href="motivation.html" class="tool-item" id="todaysMotivation">
+                    <div class="tool-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <div class="tool-name">Today's Motivation</div>
+                </a>
+                
+                <!-- EMI Calculator -->
+                <a href="emi-calculator.html" class="tool-item" id="emiCalculator">
+                    <div class="tool-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="tool-name">EMI Calculator</div>
+                </a>
+                
+                <!-- VAT Calculator -->
+                <a href="vat-calculator.html" class="tool-item" id="vatCalculator">
+                    <div class="tool-icon">
+                        <i class="fas fa-percent"></i>
+                    </div>
+                    <div class="tool-name">VAT Calculator</div>
+                </a>
+                
+                <!-- SIP Calculator -->
+                <div class="tool-item" id="sipCalculator">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="tool-name">SIP Calculator</div>
+                </div>
+                
+                <!-- Interest Calculator -->
+                <a href="interest-calculator.html" class="tool-item" id="interestCalculator">
+                    <div class="tool-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="tool-name">Interest Calculator</div>
+                </a>
+                
+                <!-- Another EMI Calculator (duplicate) -->
+                <a href="emi-calculator.html" class="tool-item" id="emiCalculator2">
+                    <div class="tool-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="tool-name">Loan Calculator</div>
+                </a>
             </div>
-            <!-- Links Container -->
-            <div class="row g-3" id="linksContainer">
-                <!-- Cards will be inserted here -->
-            </div>
         </div>
-    </main>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2023 LinkHub. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> 
-
-    <!-- Custom JavaScript -->
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
     <script>
-        // Sample link data with icons
-        const links = [
-            {
-                title: "Driving License Status",
-                url: "https://applydlnew.dotm.gov.np/licensecheck", 
-                description: "Smart-Card License Search",
-                category: "Informative",
-                icon: "fa-light fa-id-card"
-            },
-            {
-                title: "Driving License Status",
-                url: "http://ekantakunalicense.bagamati.gov.np/license-status",
-                description: "Driving License Print Check",
-                category: "Informative",
-                icon: "fa-light fa-id-card"
-            },
-            {
-                title: "NID Card Status",
-                url: "https://citizenportal.donidcr.gov.np/en/check-national-id-number", 
-                description: "Find Your National ID Number",
-                category: "Informative",
-                icon: "fa-light fa-id-card"
-            },
-            {
-                title: "NID Card Status",
-                url: "https://citizenportal.donidcr.gov.np/en/check-nid-card-status", 
-                description: "Check National ID Card Status",
-                category: "Informative",
-                icon: "fa-light fa-address-card"
-            },
-            {
-                title: "LinkedIn",
-                url: "https://www.linkedin.com", 
-                description: "Professional networking platform",
-                category: "Social",
-                icon: "fa-brands fa-linkedin"
-            },
-            {
-                title: "Reddit",
-                url: "https://www.reddit.com", 
-                description: "Community discussion platform",
-                category: "Social",
-                icon: "fa-brands fa-reddit"
-            },
-            {
-                title: "Google",
-                url: "https://www.google.com", 
-                description: "The world's most popular search engine",
-                category: "Search",
-                icon: "fa-search"
-            },
-            {
-                title: "GitHub",
-                url: "https://www.github.com", 
-                description: "Platform for version control and collaboration",
-                category: "Development",
-                icon: "fa-code-branch"
-            },
-            {
-                title: "YouTube",
-                url: "https://www.youtube.com", 
-                description: "Video sharing platform with endless content",
-                category: "Entertainment",
-                icon: "fa-play"
-            },
-            {
-                title: "Bootstrap Docs",
-                url: "https://getbootstrap.com/docs/5.3/getting-started/introduction/", 
-                description: "Comprehensive documentation for Bootstrap 5",
-                category: "Development",
-                icon: "fa-book"
-            },
-            {
-                title: "MDN Web Docs",
-                url: "https://developer.mozilla.org", 
-                description: "Resources for web developers",
-                category: "Development",
-                icon: "fa-file-code"
-            },
-            {
-                title: "Stack Overflow",
-                url: "https://stackoverflow.com", 
-                description: "Q&A for professional programmers",
-                category: "Development",
-                icon: "fa-question-circle"
-            },
-            {
-                title: "Dribbble",
-                url: "https://dribbble.com", 
-                description: "Showcase of design work and inspiration",
-                category: "Design",
-                icon: "fa-basketball-ball"
-            },
-            {
-                title: "Figma",
-                url: "https://figma.com", 
-                description: "Collaborative interface design tool",
-                category: "Design",
-                icon: "fa-pen-fancy"
-            },
-            {
-                title: "Twitter",
-                url: "https://twitter.com", 
-                description: "Social networking platform",
-                category: "Social",
-                icon: "fa-brands fa-twitter"
-            }
-        ];
-
-        // Function to render links
-        function renderLinks(linksToRender) {
-            const container = document.getElementById('linksContainer');
-            container.innerHTML = '';
-            if (linksToRender.length === 0) {
-                container.innerHTML = `
-                    <div class="col-12 no-results">
-                        <i class="fas fa-search"></i>
-                        <h4>No links found</h4>
-                        <p>Try a different search term</p>
-                    </div>
-                `;
-                return;
-            }
-            linksToRender.forEach(link => {
-                const col = document.createElement('div');
-                col.className = 'col-md-6 col-lg-4';
-                col.innerHTML = `
-                    <div class="card link-card">
-                        <div class="card-body">
-                            <span class="category-badge">${link.category}</span>
-                            <h5 class="card-title">
-                                <i class="fas ${link.icon}"></i>
-                                ${link.title}
-                            </h5>
-                            <p class="card-text">${link.description}</p>
-                            <a href="${link.url}" target="_blank" class="btn visit-btn">
-                                Visit <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(col);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click event listeners to all tool items
+            const toolItems = document.querySelectorAll('.tool-item');
+            
+            toolItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
             });
-        }
-
-        // Function to filter links based on search term
-        function filterLinks(searchTerm) {
-            if (!searchTerm) {
-                return links;
-            }
-            const lowerCaseSearchTerm = searchTerm.toLowerCase();
-            return links.filter(link =>
-                link.title.toLowerCase().includes(lowerCaseSearchTerm) ||
-                link.description.toLowerCase().includes(lowerCaseSearchTerm) ||
-                link.category.toLowerCase().includes(lowerCaseSearchTerm)
-            );
-        }
-
-        // Event listener for search input
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            const searchTerm = e.target.value;
-            const filteredLinks = filterLinks(searchTerm);
-            renderLinks(filteredLinks);
+            
+            // Handler for Rate Exchange
+            document.getElementById('rateExchange').addEventListener('click', function() {
+                window.open('https://www.nrb.org.np/forex/', '_blank');
+            });
+            
+            // Handler for SIP Calculator
+            document.getElementById('sipCalculator').addEventListener('click', function() {
+                window.open('https://www.nimbacecapital.com/sip-calculator/', '_blank');
+            });
+            
+            // Handler for EMI Calculator
+            document.getElementById('emiCalculator').addEventListener('click', function() {
+                window.open('https://nepalbank.com.np/calculator', '_blank');
+            });
+            
         });
-
-        // Initial render
-        renderLinks(links);
     </script>
 </body>
 </html>
