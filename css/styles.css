@@ -1,0 +1,82 @@
+/* Light & Dark Mode Base */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light-mode {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #e9ecef;
+  --text-color: #212529;
+  --card-bg: #ffffff;
+  --border-color: #dee2e6;
+}
+
+body.dark-mode {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-color: #f8f9fa;
+  --card-bg: #343a40;
+  --border-color: #495057;
+  color: var(--text-color);
+}
+
+/* Apply variables */
+.bg-light { background-color: var(--bg-primary) !important; }
+.bg-white { background-color: var(--bg-secondary) !important; }
+.card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+}
+.card .card-title, .card .card-text {
+  color: var(--text-color);
+}
+.text-muted { color: #6c757d !important; }
+blockquote { color: #dee2e6; }
+
+/* General */
+.genre-card {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.genre-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.text-pink { color: #e83e8c; }
+
+#bookList .card, #newArrivals .card, #bestsellerList .card {
+  transition: transform 0.2s;
+  height: 100%;
+}
+
+#bookList .card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.badge-bestseller {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+}
+
+/* Dark Mode Toggle Icon */
+#darkModeToggle i {
+  transition: transform 0.2s;
+}
+#darkModeToggle:hover i {
+  transform: rotate(30deg);
+}
