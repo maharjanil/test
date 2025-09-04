@@ -1,227 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finance Tools App</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3f37c9;
-            --light-color: #f8f9fa;
-            --dark-color: #212529;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f7fa;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .app-container {
-            max-width: 500px;
-            margin: auto;
-            background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .app-header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-        
-        .app-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        
-        .tool-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            margin-bottom: 15px;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none !important;
-            color: var(--dark-color);
-        }
-        
-        .tool-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            background-color: var(--light-color);
-        }
-        
-        .tool-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-color);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-        
-        .tool-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-        
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-        
-        @media (max-width: 576px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .app-container {
-                height: 100vh;
-                border-radius: 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Book Shelf | Your Local Bookstore</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="app-container">
-        <div class="app-header">
-            Finance Tools
-        </div>
-        <div class="app-content">
-            <div class="grid-container">
-                <!-- Rate Exchange -->
-                <div class="tool-item" id="rateExchange">
-                    <div class="tool-icon">
-                        <i class="fas fa-exchange-alt"></i>
-                    </div>
-                    <div class="tool-name">Rate Exchange</div>
-                </div>
-                
-                <!-- Date Converter -->
-                <a href="date-converter.html" class="tool-item" id="dateConverter">
-                    <div class="tool-icon">
-                        <i class="far fa-calendar-alt"></i>
-                    </div>
-                    <div class="tool-name">Date Converter</div>
-                </a>
-                
-                <!-- Today's Motivation -->
-                <a href="motivation.html" class="tool-item" id="todaysMotivation">
-                    <div class="tool-icon">
-                        <i class="fas fa-quote-left"></i>
-                    </div>
-                    <div class="tool-name">Today's Motivation</div>
-                </a>
-                
-                <!-- EMI Calculator -->
-                <a href="emi-calculator.html" class="tool-item" id="emiCalculator">
-                    <div class="tool-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <div class="tool-name">EMI Calculator</div>
-                </a>
-                
-                <!-- VAT Calculator -->
-                <a href="vat-calculator.html" class="tool-item" id="vatCalculator">
-                    <div class="tool-icon">
-                        <i class="fas fa-percent"></i>
-                    </div>
-                    <div class="tool-name">VAT Calculator</div>
-                </a>
-                
-                <!-- SIP Calculator -->
-                <div class="tool-item" id="sipCalculator">
-                    <div class="tool-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <div class="tool-name">SIP Calculator</div>
-                </div>
-                
-                <!-- Interest Calculator -->
-                <a href="interest-calculator.html" class="tool-item" id="interestCalculator">
-                    <div class="tool-icon">
-                        <i class="fas fa-coins"></i>
-                    </div>
-                    <div class="tool-name">Interest Calculator</div>
-                </a>
-                
-                <!-- Another EMI Calculator (duplicate) -->
-                <a href="emi-calculator.html" class="tool-item" id="emiCalculator2">
-                    <div class="tool-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <div class="tool-name">Loan Calculator</div>
-                </a>
-            </div>
-        </div>
-    </div>
+<body class="light-mode">
 
-    <!-- Bootstrap 5 JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add click event listeners to all tool items
-            const toolItems = document.querySelectorAll('.tool-item');
-            
-            toolItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 200);
-                });
-            });
-            
-            // Handler for Rate Exchange
-            document.getElementById('rateExchange').addEventListener('click', function() {
-                window.open('https://www.nrb.org.np/forex/', '_blank');
-            });
-            
-            // Handler for SIP Calculator
-            document.getElementById('sipCalculator').addEventListener('click', function() {
-                window.open('https://www.nimbacecapital.com/sip-calculator/', '_blank');
-            });
-            
-            // Handler for EMI Calculator
-            document.getElementById('emiCalculator').addEventListener('click', function() {
-                window.open('https://nepalbank.com.np/calculator/', '_blank');
-            });
-            
-            // Handler for VAT Calculator
-            document.getElementById('vatCalculator').addEventListener('click', function() {
-                window.open('https://vatcalconline.com/', '_blank');
-            });
-            
-        });
-    </script>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-book"></i> The Book Shelf
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#books">Books</a></li>
+          <li class="nav-item"><a class="nav-link" href="#staff-pick">Staff Pick</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bestsellers">Bestsellers</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <!-- Dark Mode Toggle -->
+          <li class="nav-item ms-3">
+            <button id="darkModeToggle" class="btn btn-sm btn-outline-light">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="bg-light text-center py-5">
+    <div class="container">
+      <h1 class="display-4">Welcome to The Book Shelf</h1>
+      <p class="lead">Where stories come to life. Discover great reads, staff favorites, and weekly updates.</p>
+      <a href="#books" class="btn btn-primary btn-lg mt-3">Browse Books</a>
+    </div>
+  </section>
+
+  <!-- Search Bar -->
+  <section class="py-4 bg-white dark:bg-gray-800">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="input-group">
+            <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="Search by title or author..." />
+            <button class="btn btn-outline-secondary"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Staff Pick -->
+  <section id="staff-pick" class="py-5 bg-primary text-white text-center">
+    <div class="container">
+      <h2 class="mb-4">🏆 Staff Pick of the Month</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <img id="staffPickCover" src="" alt="Staff Pick" class="img-fluid rounded mb-3" style="max-height: 300px; object-fit: cover;">
+          <h4 id="staffPickTitle" class="fw-bold"></h4>
+          <p id="staffPickAuthor" class="text-light"></p>
+          <blockquote class="blockquote mt-3">
+            <p>"This book stayed with me long after the last page. A powerful story about courage, identity, and the magic of words."</p>
+            <footer class="blockquote-footer text-light">— Maya, Lead Bookseller</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Arrivals -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">🆕 New This Week</h2>
+      <div class="row" id="newArrivals">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- All Books -->
+  <section id="books" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Our Book Collection</h2>
+
+      <!-- Genre Filter -->
+      <div class="text-center mb-4">
+        <div class="btn-group" role="group">
+          <button class="btn btn-outline-secondary active" data-filter="all">All</button>
+          <button class="btn btn-outline-secondary" data-filter="fiction">Fiction</button>
+          <button class="btn btn-outline-secondary" data-filter="non-fiction">Non-Fiction</button>
+          <button class="btn btn-outline-secondary" data-filter="mystery">Mystery</button>
+          <button class="btn btn-outline-secondary" data-filter="romance">Romance</button>
+          <button class="btn btn-outline-secondary" data-filter="sci-fi">Sci-Fi</button>
+          <button class="btn btn-outline-secondary" data-filter="biography">Biography</button>
+        </div>
+      </div>
+
+      <!-- Book Grid -->
+      <div class="row" id="bookList">
+        <!-- Books loaded by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Bestsellers -->
+  <section id="bestsellers" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">🔥 Bestsellers</h2>
+      <div class="row" id="bestsellerList">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Genres Section -->
+  <section id="genres" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Browse by Genre</h2>
+      <div class="row text-center">
+        <div class="col-md-2 mb-4" onclick="filterBooks('fiction')">
+          <div class="genre-card p-3 h-100">
+            <i class="fas fa-feather-alt fa-2x text-primary mb-2"></i>
+            <h5>Fiction</h5>
+          </div>
+        </div>
+        <div class="col-md-2 mb-4" onclick="filterBooks('non-fiction')">
+          <div class="genre-card p-3 h-100">
+            <i class="fas fa-book-open fa-2x text-success mb-2"></i>
+            <h5>Non-Fiction</h5>
+          </div>
+        </div>
+        <div class="col-md-2 mb-4" onclick="filterBooks('mystery')">
+          <div class="genre-card p-3 h-100">
+            <i class="fas fa-mask fa-2x text-danger mb-2"></i>
+            <h5>Mystery</h5>
+          </div>
+        </div>
+        <div class="col-md-2 mb-4" onclick="filterBooks('romance')">
+          <div class="genre-card p-3 h-100">
+            <i class="fas fa-heart fa-2x text-pink mb-2"></i>
+            <h5>Romance</h5>
+          </div>
+        </div>
+        <div class="col-md-2 mb-4" onclick="filterBooks('sci-fi')">
+          <div class="genre-card p-3 h-100">
+            <i class="fas fa-rocket fa-2x text-warning mb-2"></i>
+            <h5>Sci-Fi</h5>
+          </div>
+        </div>
+        <div class="col-md-2 mb-4" onclick="filterBooks('biography')">
+          <div class="genre-card p-3 h-100">
+            <i class="fas fa-user-friends fa-2x text-info mb-2"></i>
+            <h5>Biography</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-5 bg-dark text-white">
+    <div class="container text-center">
+      <h2>Visit Us</h2>
+      <p><i class="fas fa-map-marker-alt"></i> 456 Chapter Street, Novel Town<br>
+         <i class="fas fa-clock"></i> Mon–Sat: 10AM–7PM | Sun: 12–5PM<br>
+         <i class="fas fa-phone"></i> (555) 987-6543<br>
+         <i class="fas fa-envelope"></i> hello@thebookshelf.com
+      </p>
+      <div class="mt-3">
+        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-2x"></i></a>
+        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="#" class="text-white"><i class="fab fa-twitter fa-2x"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-secondary text-white text-center py-3">
+    <p>&copy; 2025 The Book Shelf. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS + Custom JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
