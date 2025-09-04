@@ -85,7 +85,7 @@ const books = [
     id: 9,
     title: "The Book Shelf",
     author: "Anil Maharjan",
-    genre: "sci-fi",
+    genre: "biography",
     price: 14.99,
     cover: "https://source.unsplash.com/random/300x400/?space",
     bestseller: false,
