@@ -57,7 +57,7 @@ const books = [
     author: "Yuval Noah Harari",
     genre: "non-fiction",
     price: 16.99,
-    cover: "https://source.unsplash.com/random/300x400/?history",
+    cover: "https://covers.openlibrary.org/b/id/15092781-M.jpg",
     bestseller: true,
     newArrival: false
   },
