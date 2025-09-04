@@ -26,7 +26,7 @@ const books = [
     author: "Arthur Conan Doyle",
     genre: "mystery",
     price: 11.99,
-    cover: "https://source.unsplash.com/random/300x400/?mystery",
+    cover: "https://www.gutenberg.org/files/2852/2852-h/images/cover.jpg",
     bestseller: true,
     newArrival: true,
     staffPick: true  // This book is the staff pick
