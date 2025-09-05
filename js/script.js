@@ -188,3 +188,70 @@ darkModeToggle.addEventListener('click', () => {
     icon.className = 'fas fa-moon';
   }
 });
+
+// Chatbot Toggle
+const chatbotToggle = document.getElementById("chatbot-toggle");
+const chatbotWidget = document.getElementById("chatbot-widget");
+const chatbotClose = document.querySelector(".chatbot-close");
+
+chatbotToggle.addEventListener("click", () => {
+  chatbotWidget.classList.add("active");
+});
+
+chatbotClose.addEventListener("click", () => {
+  chatbotWidget.classList.remove("active");
+});
+
+// Chatbot Responses
+function showAnswer(type) {
+  const body = document.querySelector(".chatbot-body");
+  let response = "";
+
+  switch (type) {
+    case "hours":
+      response = `
+        <p><strong>Store Hours:</strong></p>
+        <p>Mon–Sat: 10AM–7PM<br>
+        Sun: 12–5PM</p>
+        <button onclick="hideChatbot()">Close</button>
+      `;
+      break;
+
+    case "location":
+      response = `
+        <p><strong>Location:</strong></p>
+        <p>Gwarko-07, Lalitpur, Nepal</p>
+        <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 8px;" allowfullscreen></iframe>
+        <button onclick="hideChatbot()">Close</button>
+      `;
+      break;
+
+    case "bestsellers":
+      response = `
+        <p>Check out our <a href="#bestsellers">Bestsellers section</a> for top-rated books this week!</p>
+        <button onclick="goToSection('bestsellers')">View Bestsellers</button>
+      `;
+      break;
+
+    case "newsletter":
+      response = `
+        <p>Join our newsletter for weekly updates!</p>
+        <button onclick="goToSection('newsletter')">Sign Up Now</button>
+      `;
+      break;
+
+    default:
+      response = "<p>How can I help?</p>";
+  }
+
+  body.innerHTML = response;
+}
+
+function hideChatbot() {
+  document.querySelector(".chatbot-widget").classList.remove("active");
+}
+
+function goToSection(id) {
+  document.querySelector(".chatbot-widget").classList.remove("active");
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
