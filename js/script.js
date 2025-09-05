@@ -202,9 +202,55 @@ chatbotClose.addEventListener("click", () => {
   chatbotWidget.classList.remove("active");
 });
 
-// Chatbot Responses
+// Wait for the page to fully load
+document.addEventListener("DOMContentLoaded", function () {
+  const chatbotToggle = document.getElementById("chatbot-toggle");
+  const chatbotWidget = document.getElementById("chatbot-widget");
+  const chatbotClose = document.querySelector(".chatbot-close");
+
+  // ✅ Debug: Check if elements are found
+  if (!chatbotToggle) {
+    console.error("Chatbot toggle button not found!");
+    return;
+  }
+  if (!chatbotWidget) {
+    console.error("Chatbot widget not found!");
+    return;
+  }
+  if (!chatbotClose) {
+    console.warn("Chatbot close button not found (optional)");
+  }
+
+  // Show chatbot
+  chatbotToggle.addEventListener("click", () => {
+    chatbotWidget.classList.add("active");
+    console.log("Chatbot opened");
+  });
+
+  // Hide chatbot
+  if (chatbotClose) {
+    chatbotClose.addEventListener("click", () => {
+      chatbotWidget.classList.remove("active");
+      console.log("Chatbot closed");
+    });
+  }
+
+  // Close if clicking outside
+  document.addEventListener("click", (e) => {
+    if (
+      !chatbotWidget.contains(e.target) &&
+      !chatbotToggle.contains(e.target)
+    ) {
+      chatbotWidget.classList.remove("active");
+    }
+  });
+});
+
+// Chatbot Response Function (must be in global scope!)
 function showAnswer(type) {
   const body = document.querySelector(".chatbot-body");
+  if (!body) return;
+
   let response = "";
 
   switch (type) {
@@ -221,22 +267,29 @@ function showAnswer(type) {
       response = `
         <p><strong>Location:</strong></p>
         <p>Gwarko-07, Lalitpur, Nepal</p>
-        <iframe src="https://www.google.com/maps/embed?pb=..." width="100%" height="150" style="border:0; border-radius: 8px; margin-top: 8px;" allowfullscreen></iframe>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.975388854398!2d85.30596537478756!3d27.674894976757528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb192f0d53cbdd%3A0x6c9d8c1f1f8c7f0e!2sGwarko%2C%20Lalitpur!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" 
+          width="100%" 
+          height="150" 
+          style="border:0; border-radius: 8px; margin-top: 8px;" 
+          allowfullscreen 
+          loading="lazy">
+        </iframe>
         <button onclick="hideChatbot()">Close</button>
       `;
       break;
 
     case "bestsellers":
       response = `
-        <p>Check out our <a href="#bestsellers">Bestsellers section</a> for top-rated books this week!</p>
-        <button onclick="goToSection('bestsellers')">View Bestsellers</button>
+        <p>Check out our <a href="#bestsellers" onclick="goToSection(event, 'bestsellers')">Bestsellers section</a>.</p>
+        <button onclick="goToSection(event, 'bestsellers')">View Bestsellers</button>
       `;
       break;
 
     case "newsletter":
       response = `
         <p>Join our newsletter for weekly updates!</p>
-        <button onclick="goToSection('newsletter')">Sign Up Now</button>
+        <button onclick="goToSection(event, 'newsletter')">Sign Up Now</button>
       `;
       break;
 
@@ -248,10 +301,17 @@ function showAnswer(type) {
 }
 
 function hideChatbot() {
-  document.querySelector(".chatbot-widget").classList.remove("active");
+  const widget = document.getElementById("chatbot-widget");
+  if (widget) widget.classList.remove("active");
 }
 
-function goToSection(id) {
-  document.querySelector(".chatbot-widget").classList.remove("active");
-  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+function goToSection(event, id) {
+  if (event) event.preventDefault();
+  hideChatbot();
+  const section = document.getElementById(id);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth" });
+  } else {
+    console.warn(`Section #${id} not found`);
+  }
 }
